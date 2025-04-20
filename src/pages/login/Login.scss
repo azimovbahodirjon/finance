@@ -1,0 +1,98 @@
+/* Main container for login page */
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.login-image-container {
+  width: 550px;
+  height: 700px;
+  padding: $spacing-500;
+  margin: 20px;
+  border-radius: 12px;
+  background-image: url("./images/illustration-authentication.svg");
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  img {
+    width: 121px;
+    height: 21px;
+  }
+}
+
+.login-image-title {
+  color: $white;
+  font-weight: 700;
+  font-size: $text-preset-1;
+  margin-bottom: 24px;
+}
+
+.login-image-description {
+  color: $white;
+  font-size: $text-preset-4;
+  line-height: 150%;
+}
+
+/* Form section styling */
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: $white;
+  padding: $spacing-400;
+  border-radius: $spacing-150;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.register-text {
+  text-align: center;
+  color: $grey-500;
+  font-size: $text-preset-4;
+}
+
+.register-link {
+  color: $grey-900;
+  font-weight: 700;
+  font-size: $text-preset-4;
+  text-decoration: underline;
+}
+
+.login-submit-btn {
+  padding: $spacing-200;
+  background-color: $grey-900;
+  border-radius: $spacing-100;
+  color: $white;
+  margin-top: 32px;
+  cursor: pointer;
+}
+
+@media (max-width: 1210px) {
+  .login-container {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .login-image-container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+  }
+  .login-form-container {
+    width: 100%;
+  }
+}

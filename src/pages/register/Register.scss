@@ -1,0 +1,135 @@
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  height: 100vh;
+  padding: 0 20px;
+  background-color: #f2f2f2;
+}
+
+.register-left {
+  width: 550px;
+  height: 700px;
+  padding: $spacing-500;
+  margin: 20px;
+  border-radius: 12px;
+  background-image: url("./images/illustration-authentication.svg");
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  img {
+    width: 121px;
+    height: 21px;
+  }
+}
+
+.register-logo {
+  width: 121px;
+  height: 21px;
+}
+
+.register-left-title {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.register-left-caption {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333333;
+  text-align: left;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    &:focus {
+      border-color: #3f82b2;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(63, 130, 178, 0.2);
+    }
+  }
+  label {
+    font-weight: 500;
+    color: #333333;
+  }
+}
+
+.register-btn {
+  padding: 12px;
+  background-color: #333333;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #3f82b2;
+    transform: scale(1.02);
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.register-caption {
+  text-align: center;
+  color: #696868;
+  font-size: 14px;
+}
+
+.register-link {
+  color: #3f82b2;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #333333;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-page {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .register-left {
+    display: none;
+  }
+  .register-form-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+}
