@@ -1,0 +1,60 @@
+/* Overview Component Styles */
+
+.overview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  /* Gradient background */
+}
+
+.overview__content {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.overview h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.overview p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.logout-btn {
+  padding: 12px 24px;
+  background-color: #ff5e57;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 180px;
+}
+
+.logout-btn:hover {
+  background-color: #ff3b2f;
+  transform: scale(1.05);
+}
+
+.logout-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.logout-btn:disabled:hover {
+  background-color: #ddd;
+}
