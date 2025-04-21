@@ -1,9 +1,8 @@
-// src/pages/login/Login.jsx
 import "./Login.scss";
 
 import FormInput from "../../components/formInput/FormInput";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../../hooks/useLogin"; // useLogin hook’ing bo’lishi kerak
+import { useLogin } from "../../hooks/useLogin";
 
 function Login() {
   const { login, isPending, error } = useLogin();
@@ -17,7 +16,7 @@ function Login() {
 
     try {
       await login(email, password);
-      navigate("/home"); // muvaffaqiyatli kirgach /home ga o‘tamiz
+      navigate("/home");
     } catch (err) {
       console.error("Login error:", err);
     }
@@ -26,7 +25,8 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-image-container">
-        <img src="./images/logo-large.svg" alt="logo" />
+        <img src="./images/logo-large.svg" alt="" />
+        <img src="./illustration-authentication.svg" alt="" />
         <div>
           <h5 className="login-image-title">
             Keep track of your money and save for your future

@@ -1,4 +1,3 @@
-// src/App.jsx
 import {
   createBrowserRouter,
   Navigate,

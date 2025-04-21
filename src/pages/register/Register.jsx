@@ -17,7 +17,7 @@ function Register() {
 
     register(email, displayName, password)
       .then(() => {
-        navigate("/"); // ✅ Muvoffaqiyatli bo‘lsa home pagega
+        navigate("/");
       })
       .catch((err) => {
         console.error("Registration error:", err.message);
@@ -27,11 +27,7 @@ function Register() {
   return (
     <div className="register-page">
       <div className="register-left">
-        <img
-          src="./images/logo-large.svg"
-          alt="logo"
-          className="register-logo"
-        />
+        <img src="./images/logo-large.svg" alt="" className="register-logo" />
         <div>
           <h5 className="register-left-title">
             Keep track of your money and save for your future
