@@ -34,7 +34,7 @@ function App() {
     return () => unsub();
   }, [dispatch]);
 
-  if (!authReady) return <p>Loading...</p>; // routingni kutadi
+  if (!authReady) return <p>Loading...</p>;
 
   const routes = createBrowserRouter([
     {

@@ -20,10 +20,10 @@ export const useRegister = () => {
         photoURL: `https://api.dicebear.com/9.x/croodles/svg?seed=${displayName}`,
       });
       dispatch(login(auth.currentUser));
-      return auth.currentUser; // ✅ Promise qaytarayapti
+      return auth.currentUser;
     } catch (err) {
       setError(err.message);
-      throw err; // ✅ Catch ishlashi uchun
+      throw err;
     } finally {
       setIsPending(false);
     }

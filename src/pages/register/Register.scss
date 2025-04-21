@@ -94,10 +94,6 @@
   cursor: pointer;
   margin-top: 16px;
   transition: all 0.3s ease;
-  &:hover {
-    background-color: #3f82b2;
-    transform: scale(1.02);
-  }
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;

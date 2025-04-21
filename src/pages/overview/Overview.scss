@@ -5,29 +5,34 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  /* Gradient background */
+  background: #1e1e2f; // <-- same as Header
+  padding: 20px;
 }
 
 .overview__content {
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #2a2a40; // slightly lighter dark for contrast
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   max-width: 400px;
   width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.overview__content:hover {
+  transform: translateY(-5px);
 }
 
 .overview h1 {
   font-size: 32px;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
 .overview p {
   font-size: 18px;
-  color: #555;
+  color: #cccccc;
   margin-bottom: 30px;
 }
 
@@ -51,10 +56,10 @@
 }
 
 .logout-btn:disabled {
-  background-color: #ddd;
+  background-color: #666;
   cursor: not-allowed;
 }
 
 .logout-btn:disabled:hover {
-  background-color: #ddd;
+  background-color: #666;
 }
