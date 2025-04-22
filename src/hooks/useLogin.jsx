@@ -1,29 +1,31 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
 import { auth } from "../firebase/config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { useState } from "react";
+
+import { login as _login } from "../app/features/userSlice";
 import { useDispatch } from "react-redux";
-import { login as loginAction } from "../app/features/userSlice";
 
 export const useLogin = () => {
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
+
+  const [user, setUser] = useState(null);
+  const [isPending, setIsPending] = useState(false);
 
   const login = async (email, password) => {
     setIsPending(true);
-    setError(null);
-
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(loginAction(res.user));
-      return res.user;
+      const req = await signInWithEmailAndPassword(auth, email, password);
+
+      const user = req.user;
+      dispatch(_login(user));
+      setUser(user);
     } catch (err) {
-      setError(err.message);
-      throw err;
+      console.error("Registration error:", err.message);
     } finally {
       setIsPending(false);
     }
   };
 
-  return { login, isPending, error };
+  return { user, login, isPending };
 };

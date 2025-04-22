@@ -12,6 +12,13 @@ body,
   height: 100%;
 }
 
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
@@ -36,4 +43,20 @@ body {
   background-color: $beige-100;
   font-size: $text-preset-4;
   font-family: $global-font-family;
+}
+
+// .container {
+//   width: 100%;
+//   margin-right: auto;
+//   margin-left: auto;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

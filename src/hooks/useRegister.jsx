@@ -1,33 +1,38 @@
-// src/hooks/useRegister.jsx
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
+
 import { auth } from "../firebase/config";
+
 import { login } from "../app/features/userSlice";
+
 import { useDispatch } from "react-redux";
 
 export const useRegister = () => {
   const dispatch = useDispatch();
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
 
-  const register = async (email, displayName, password) => {
+  const [user, setUser] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+
+  const register = async (email, password, displayName) => {
     setIsPending(true);
-    setError(null);
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const req = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, {
         displayName,
-        photoURL: `https://api.dicebear.com/9.x/croodles/svg?seed=${displayName}`,
+        photoURL:
+          "https://api.dicebear.com/9.x/croodles/svg?seed=" + displayName,
       });
-      dispatch(login(auth.currentUser));
-      return auth.currentUser;
+      const user = req.user;
+      console.log(user);
+      dispatch(login(user));
+      setUser(user);
     } catch (err) {
-      setError(err.message);
-      throw err;
+      console.error("Registration error:", err.message);
     } finally {
       setIsPending(false);
     }
+    
   };
 
-  return { register, isPending, error };
+  return { user, register, isPending };
 };

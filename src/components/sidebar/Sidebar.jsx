@@ -1,9 +1,10 @@
+// Header.jsx
 import "./Sidebar.scss";
 
-function Header() {
+function Sidebar() {
   return (
     <header className="main-header">
-      <div className="logo">SITEBAR </div>
+      <div className="logo">SITEBAR</div>
       <nav className="nav">
         <a href="#">Home</a>
         <a href="#">Profile</a>
@@ -13,4 +14,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Sidebar;

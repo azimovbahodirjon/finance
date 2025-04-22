@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
 
-export function useLogout() {
+export const useLogout = () => {
   const [isPending, setIsPending] = useState(false);
 
   const signout = async () => {
@@ -17,6 +17,4 @@ export function useLogout() {
   };
 
   return { signout, isPending };
-}
-
-export default useLogout;
+};

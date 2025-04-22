@@ -1,45 +1,42 @@
 import "./Login.scss";
 
 import FormInput from "../../components/formInput/FormInput";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 
 function Login() {
-  const { login, isPending, error } = useLogin();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
+  const { login, isPending } = useLogin();
+  const handleLogin = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const formData = new FormData(e.target);
 
-    try {
-      await login(email, password);
-      navigate("/home");
-    } catch (err) {
-      console.error("Login error:", err);
-    }
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    login(email, password);
   };
-
   return (
-    <div className="login-container">
-      <div className="login-image-container">
-        <img src="./images/logo-large.svg" alt="" />
-        <img src="./illustration-authentication.svg" alt="" />
+    <div className="login-page">
+      <div className="login-left">
+        <img src="./images/logo-large.svg" alt="login image" />
         <div>
-          <h5 className="login-image-title">
+          <h5 className="login-left-title">
             Keep track of your money and save for your future
           </h5>
-          <p className="login-image-description">
+          <p className="login-left-caption">
             Personal finance app puts you in control of your spending. Track
             transactions, set budgets, and add to savings pots easily.
           </p>
         </div>
       </div>
-      <div className="login-form-container">
-        <h1 className="login-header">Login</h1>
-        <form onSubmit={handleSubmit}>
+      <img
+        className="login-image"
+        src="/images/illustration-authentication.svg"
+        alt="finance image"
+      />
+      <div className="login-form">
+        <h1 className="login-title">Login</h1>
+        <form onSubmit={handleLogin}>
           <FormInput
             label="Email"
             name="email"
@@ -52,18 +49,13 @@ function Login() {
             placeholder="Type here..."
             type="password"
           />
-          <button
-            className="login-submit-btn"
-            type="submit"
-            disabled={isPending}
-          >
+          <button className="login-btn">
             {isPending ? "Loading..." : "Login"}
           </button>
-          {error && <p className="error-text">{error}</p>}
         </form>
-        <p className="register-text">
+        <p className="register-caption">
           Need to create account?{" "}
-          <Link className="register-link" to="/register">
+          <Link className="link-register" to="/register">
             SignUp
           </Link>
         </p>
