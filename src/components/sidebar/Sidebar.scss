@@ -1,4 +1,4 @@
-.Sidebar-container {
+.sidebar-container {
     display: flex;
     flex-direction: column;
     background-color: #201f24;
@@ -9,6 +9,8 @@
     border-bottom-right-radius: 15px;
     position: sticky;
     top: 0;
+    min-width: 300px;
+    max-width: 300px;
 }
 
 .logo-wrap {
@@ -33,14 +35,16 @@
     align-items: center;
     gap: 16px;
     padding: 17px 80px 17px 32px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
     cursor: pointer;
+    text-decoration: none;
     img {
         width: 24px;
         height: 24px;
+        transition: filter 0.2s ease;
     }
     p {
-        font-family: Public Sans;
+        font-family: "Public Sans", sans-serif;
         font-weight: 700;
         font-size: 16px;
         line-height: 150%;
@@ -49,7 +53,6 @@
         transition: color 0.2s ease;
     }
     &.active {
-        outline: none;
         background-color: #f8f4f0;
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
@@ -64,14 +67,28 @@
         p {
             color: #f2f2f2;
         }
+        img {
+            filter: brightness(0) saturate(100%) invert(85%) sepia(3%) saturate(300%) hue-rotate(180deg);
+        }
     }
-}
-
-.items:hover:not(.active) img {
-    filter: brightness(0) saturate(100%) invert(85%) sepia(3%) saturate(300%) hue-rotate(180deg);
 }
 
 .side-logout {
     padding-top: 20px;
     margin-top: auto;
+}
+
+.logout-btn {
+    border: 12px;
+    border-radius: 12px;
+    transition: 0.3 ease;
+    &:hover {
+        background-color: #ff4d4f;
+        p {
+            color: #fff;
+        }
+        img {
+            filter: brightness(0) saturate(100%) invert(100%);
+        }
+    }
 }

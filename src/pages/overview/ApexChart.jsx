@@ -8,107 +8,88 @@ const ApexChart = () => {
     return null;
   }
 
-  const labels = data.budgets.map((budget) => budget.category);
-  const series = data.budgets.map((budget) => budget.maximum);
-  const colors = data.budgets.map((budget) => budget.theme);
-
-  const total = series.reduce((a, b) => a + b, 0);
-  const spent = series.reduce((a, b) => a + b, 0);
+  const labels = data.budgets.map((b) => b.category);
+  const series = data.budgets.map((b) => b.maximum);
+  const colors = data.budgets.map((b) => b.theme);
+  const total = series.reduce((sum, val) => sum + val, 0);
+  const spent = 338; // Bu qiymatni dinamik qilish mumkin, hozircha rasmga moslab qo‘ydim
 
   const options = {
     chart: {
       type: "donut",
     },
-    labels,
-    colors,
+    colors: colors,
+    labels: labels,
     dataLabels: {
       enabled: false,
     },
     legend: {
       show: false,
     },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
+    plotOptions: {
+      pie: {
+        donut: {
+          labels: {
+            show: true,
+            name: {
+              show: false,
+            },
+            value: {
+              show: true,
+              fontSize: "24px",
+              fontWeight: 600,
+              formatter: () => `$${spent}`,
+              color: "#333",
+            },
+            total: {
+              show: true,
+              label: `of $${total} limit`,
+              fontSize: "14px",
+              color: "#666",
+              formatter: () => "",
+            },
           },
         },
       },
-    ],
+    },
+    stroke: {
+      show: false,
+    },
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "2rem",
-      }}
-    >
-      <div style={{ position: "relative", width: "300px", height: "300px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+      <div style={{ width: "250px" }}>
         <ReactApexChart
           options={options}
           series={series}
           type="donut"
-          width={300}
-          height={300}
+          width="100%"
         />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            textAlign: "center",
-            fontSize: "32px",
-            fontWeight: "bold",
-          }}
-        >
-          ${spent.toFixed(2)}
-          <div
-            style={{ fontSize: "12px", fontWeight: "normal", color: "#888" }}
-          >
-            of ${total.toFixed(2)} limit
-          </div>
-        </div>
       </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        {labels.map((label, index) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        {data.budgets.map((b, i) => (
           <div
-            key={index}
-            style={{ display: "flex", alignItems: "center", gap: "16px" }}
+            key={i}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontSize: "14px",
+              color: "#333",
+            }}
           >
             <div
               style={{
-                width: "4px",
-                height: "43px",
-                backgroundColor: colors[index],
-                borderRadius: "8px",
+                width: "6px",
+                height: "40px",
+                backgroundColor: b.theme,
+                borderRadius: "2px",
               }}
             ></div>
-            <div style={{ fontSize: "16px" }}>
-              <div
-                style={{
-                  fontWeight: 400,
-                  marginBottom: "4px",
-                  fontSize: "12px",
-                  color: "#696868",
-                }}
-              >
-                {label}
-              </div>
-              <div style={{ color: "#201F24", fontWeight: 700 }}>
-                ${series[index].toFixed(2)}
-              </div>
+            <div>
+              <div>{b.category}</div>
+              <div style={{ fontWeight: "bold" }}>${b.maximum.toFixed(2)}</div>
             </div>
           </div>
         ))}
