@@ -3,7 +3,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 
 function Mainlayout() {
   return (
-    <div className="container">
+    <div className="layout">
       <Sidebar />
       <main>
         <Outlet />

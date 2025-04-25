@@ -1,48 +1,77 @@
-/* Sidebar.scss */
-
-.main-header {
-  width: 100%;
-  height: 80px;
-  background: linear-gradient(90deg, #1e1e2f, #2a2a40);
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  .logo {
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  .nav {
+.Sidebar-container {
     display: flex;
-    gap: 30px;
-    a {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 12px;
-      position: relative;
-      transition: color 0.3s ease;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        left: 0;
-        width: 0;
-        height: 3px;
-        background: #ff5e57;
-        transition: width 0.3s ease;
-      }
-      &:hover {
-        color: #ff5e57;
-      }
-      &:hover::after {
-        width: 100%;
-      }
+    flex-direction: column;
+    background-color: #201f24;
+    min-height: 100vh;
+    height: 100%;
+    padding: 40px 24px 130px 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: sticky;
+    top: 0;
+}
+
+.logo-wrap {
+    padding-left: 32px;
+}
+
+.sidebar-logo {
+    display: flex;
+    margin-bottom: 64px;
+    width: 121px;
+    height: 22px;
+}
+
+.item-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.items {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 80px 17px 32px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    img {
+        width: 24px;
+        height: 24px;
     }
-  }
+    p {
+        font-family: Public Sans;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0;
+        color: #b3b3b3;
+        transition: color 0.2s ease;
+    }
+    &.active {
+        outline: none;
+        background-color: #f8f4f0;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        p {
+            color: #201f24;
+        }
+        img {
+            filter: brightness(0) saturate(100%) invert(39%) sepia(15%) saturate(850%) hue-rotate(125deg);
+        }
+    }
+    &:hover:not(.active) {
+        p {
+            color: #f2f2f2;
+        }
+    }
+}
+
+.items:hover:not(.active) img {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(3%) saturate(300%) hue-rotate(180deg);
+}
+
+.side-logout {
+    padding-top: 20px;
+    margin-top: auto;
 }

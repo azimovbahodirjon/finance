@@ -46,7 +46,7 @@ function App() {
           element: <Transactions />,
         },
         {
-          path: "budget",
+          path: "budgets",
           element: <Budget />,
         },
         {
