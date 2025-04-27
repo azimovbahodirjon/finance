@@ -1,82 +1,97 @@
-import { useSelector } from "react-redux";
-import { useLogout } from "../../hooks/useLogout";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import "./Sidebar.scss";
 
 function Sidebar() {
-  const { user } = useSelector((state) => state.user);
-  const { logout, isPending } = useLogout();
-
-  const handleLogout = () => {
-    if (user?.uid) {
-      logout(user.uid);
-    }
-  };
+  const [showNavbar, setShowNavbar] = useState(false);
 
   return (
-    <div className="sidebar-container">
-      <div className="logo-wrap">
-        <img
-          className="sidebar-logo"
-          src="./images/logo-large.svg"
-          alt="Finance Logo"
-        />
-      </div>
-      <div className="item-wrap">
-        <NavLink
-          className={({ isActive }) => `items ${isActive ? "active" : ""}`}
-          to="/"
-          end
-        >
-          <img src="./images/icon-nav-overview.svg" alt="Overview Icon" />
-          <p>Overview</p>
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => `items ${isActive ? "active" : ""}`}
-          to="/transactions"
-        >
+    <div className={`Sidebar-container ${showNavbar ? "toggle-bar" : ""}`}>
+      <div>
+        <div className="logo-wrap">
           <img
-            src="./images/icon-nav-transactions.svg"
-            alt="Transactions Icon"
+            className={showNavbar ? "sidebar-logo-small" : "sidebar-logo"}
+            src={
+              showNavbar ? "./images/logo-small.svg" : "./images/logo-large.svg"
+            }
+            alt=""
           />
-          <p>Transactions</p>
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => `items ${isActive ? "active" : ""}`}
-          to="/budgets"
-        >
-          <img src="./images/icon-nav-budgets.svg" alt="Budgets Icon" />
-          <p>Budgets</p>
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => `items ${isActive ? "active" : ""}`}
-          to="/pots"
-        >
-          <img src="./images/icon-nav-pots.svg" alt="Pots Icon" />
-          <p>Pots</p>
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => `items ${isActive ? "active" : ""}`}
-          to="/recurringBills"
-        >
-          <img
-            src="./images/icon-nav-recurring-bills.svg"
-            alt="Recurring Bills Icon"
-          />
-          <p>Recurring bills</p>
-        </NavLink>
-      </div>
-      <div className="side-logout">
-        {user && (
+        </div>
+        <div className="item-wrap">
           <NavLink
-            className="items logout-btn"
-            to="/login"
-            onClick={handleLogout}
+            to="/"
+            end
+            className={({ isActive }) => `items${isActive ? " active" : ""}`}
           >
-            <img src="./images/icon-minimize-menu.svg" alt="Logout Icon" />
-            <p>{isPending ? "Logging out..." : "Logout"}</p>
+            {({ isActive }) => (
+              <>
+                <img src="./images/icon-nav-overview.svg" alt="Overview" />
+                {!showNavbar && <p>Overview</p>}
+              </>
+            )}
           </NavLink>
-        )}
+
+          <NavLink
+            to="/transactions"
+            className={({ isActive }) => `items${isActive ? " active" : ""}`}
+          >
+            {({ isActive }) => (
+              <>
+                <img
+                  src="./images/icon-nav-transactions.svg"
+                  alt="Transactions"
+                />
+                {!showNavbar && <p>Transactions</p>}
+              </>
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/budgets"
+            className={({ isActive }) => `items${isActive ? " active" : ""}`}
+          >
+            {({ isActive }) => (
+              <>
+                <img src="./images/icon-nav-budgets.svg" alt="Budgets" />
+                {!showNavbar && <p>Budgets</p>}
+              </>
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/pots"
+            className={({ isActive }) => `items${isActive ? " active" : ""}`}
+          >
+            {({ isActive }) => (
+              <>
+                <img src="./images/icon-nav-pots.svg" alt="Pots" />
+                {!showNavbar && <p>Pots</p>}
+              </>
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/recurringBills"
+            className={({ isActive }) => `items${isActive ? " active" : ""}`}
+          >
+            {({ isActive }) => (
+              <>
+                <img
+                  src="./images/icon-nav-recurring-bills.svg"
+                  alt="Recurring bills"
+                />
+                {!showNavbar && <p>Recurring bills</p>}
+              </>
+            )}
+          </NavLink>
+        </div>
+      </div>
+      <div
+        onClick={() => setShowNavbar(!showNavbar)}
+        className="side-logout items"
+      >
+        <img src="./images/icon-minimize-menu.svg" alt="" />
+        {!showNavbar && <p>Minimize Menu</p>}
       </div>
     </div>
   );
