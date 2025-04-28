@@ -18,43 +18,39 @@ function Register() {
   return (
     <div className="auth-container">
       <div className="auth-side-panel">
-        <img src="./images/logo-large.svg" alt="register logo" />
-        <div>
-          <h5 className="auth-heading">
-            Keep track of your money and save for your future
-          </h5>
-          <p className="auth-description">
-            Personal finance app puts you in control of your spending. Track
-            transactions, set budgets, and add to savings pots easily.
-          </p>
-        </div>
-      </div>
-      <div className="auth-background-wrapper">
         <img
           className="auth-background-image"
           src="/images/illustration-authentication.svg"
           alt="finance illustration"
         />
+        <div className="image-overlay">
+          <h2 className="finance-logo">finance</h2>
+          <div className="text-container">
+            <h5 className="auth-heading">
+              Keep track of your money and save for your future
+            </h5>
+            <p className="auth-description">
+              Personal finance app puts you in control of your spending. Track
+              transactions, set budgets, and add to savings pots easily.
+            </p>
+          </div>
+        </div>
       </div>
+
       <div className="auth-form-wrapper">
         <h1 className="auth-title">Sign Up</h1>
         <form onSubmit={handleRegister}>
           <FormInput
             label="Name"
             name="displayName"
-            placeholder="Type here..."
+            placeholder=""
             type="text"
           />
-          <FormInput
-            label="Email"
-            name="email"
-            placeholder="Type here..."
-            type="email"
-          />
+          <FormInput label="Email" name="email" placeholder="" type="email" />
           <FormInput
             label="Create Password"
             name="password"
-            placeholder="Type here..."
+            placeholder=""
             type="password"
           />
           <button className="auth-button">

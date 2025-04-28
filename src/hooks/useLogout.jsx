@@ -1,24 +1,28 @@
-import { useState } from "react";
-import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
-import { logut } from "../app/features/userSlice";
+import { auth } from "../firebase/config"; // Firebase auth instance
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+// import { logoutUser } from ".."; // Reduxdagi logout action
 
 export const useLogout = () => {
-  const dispatch = useDispatch();
   const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const dispatch = useDispatch();
 
-  const signout = async () => {
+  const logout = async () => {
     setIsPending(true);
+    setError(null);
     try {
       await signOut(auth);
-      dispatch(logut());
+      dispatch(logoutUser());
+      setSuccess(true);
     } catch (err) {
-      console.log(err.message);
-    } finally {
-      setIsPending(false);
+      console.error(err.message);
+      setError(err.message);
     }
+    setIsPending(false);
   };
 
-  return { signout, isPending };
+  return { logout, isPending, error, success };
 };

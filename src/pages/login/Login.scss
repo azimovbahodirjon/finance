@@ -1,110 +1,196 @@
+// SCSS variables (assumed to be defined in your project)
+$spacing-500: 40px;
+$spacing-400: 32px;
+$spacing-200: 16px;
+$spacing-150: 12px;
+$spacing-100: 8px;
+$text-preset-1: 36px;
+$text-preset-4: 16px;
+$white: #fff;
+$grey-500: #666;
+$grey-900: #333;
+// Ensure the entire page background is white
+body {
+  // background-color: $wh; // Override any parent styles
+  margin: 0; // Remove default margin
+}
+
 .login-page {
-    display: flex;
-    align-items: center;
-    gap: 140px;
-    margin-right: auto;
-    margin-left: auto;
-    position: relative;
-}
-
-.login-title {
-    text-align: left;
-    margin: 0;
-    padding: 0;
-}
-
-.login-image {
-    position: absolute;
-    z-index: -5;
-    top: 20px;
-    left: 20px;
-    border-radius: 12px;
-    height: 700px;
-    width: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  min-height: 100vh;
+  padding: 40px;
+  background-color: $white; // Changed to pure white
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .login-left {
-    width: 550px;
-    height: 700px;
-    padding: $spacing-500;
-    margin: 20px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    img {
-        width: 121px;
-        height: 21px;
-    }
+  width: 400px;
+  height: 600px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  z-index: 2;
+}
+
+.finance-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: $white;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .login-left-title {
-    color: $white;
-    font-weight: 700;
-    font-size: $text-preset-1;
-    margin-bottom: 24px;
+  color: $white;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .login-left-caption {
-    color: $white;
-    font-size: $text-preset-4;
-    line-height: 150%;
+  color: $white;
+  font-size: 10px;
+  line-height: 150%;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: $white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+  min-width: 360px;
+  form {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    background-color: $white;
-    padding: $spacing-400;
-    border-radius: $spacing-150;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.3s ease;
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    &:hover {
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-    }
+    gap: 16px;
+  }
+  &:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.login-title {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .register-caption {
-    text-align: center;
-    color: $grey-500;
-    font-size: $text-preset-4;
-    .link-register {
-        color: $grey-900;
-        font-weight: 700;
-        font-size: $text-preset-4;
-        text-decoration: underline;
-    }
+  text-align: center;
+  color: $grey-500;
+  font-size: 14px;
+  .link-register {
+    color: $grey-900;
+    font-weight: 700;
+    text-decoration: underline;
+  }
 }
 
 .login-btn {
-    padding: $spacing-200;
-    background-color: $grey-900;
-    border-radius: $spacing-100;
-    color: $white;
-    margin-top: 32px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    &:hover {
-        background-color: darken($grey-900, 5%);
-        transform: translateY(-2px);
-    }
+  padding: 12px;
+  background-color: $grey-900;
+  border-radius: 8px;
+  color: $white;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  &:hover {
+    background-color: darken($grey-900, 10%);
+    transform: translateY(-2px);
+  }
 }
 
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    color: $grey-900;
+    text-transform: uppercase;
+  }
+  input {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 16px;
+    color: $grey-900;
+    background-color: $white;
+    transition: border-color 0.3s ease;
+    &:focus {
+      outline: none;
+      border-color: $grey-900;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+/* Responsive */
+
 @media (max-width: 1210px) {
-    .login-left {
-        display: none !important;
-        opacity: 50%;
-    }
-    .login-page {
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-    }
+  .login-page {
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px;
+  }
+  .login-left {
+    display: none !important;
+    opacity: 0.5;
+  }
+  .login-form {
+    width: 100%;
+    max-width: 360px;
+  }
 }

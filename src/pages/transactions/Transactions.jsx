@@ -17,7 +17,7 @@ const getAvatar = (rawPath) => {
 };
 
 function Transactions() {
-  const { data } = useCollection("transactions");
+  const { data, isPending: isLoading } = useCollection("transactions");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("Latest");
@@ -61,6 +61,13 @@ function Transactions() {
   const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
   const handleNext = () =>
     currentPage < totalPages && setCurrentPage(currentPage + 1);
+
+  const handleClearFilters = () => {
+    setSearchTerm("");
+    setSortOption("Latest");
+    setCategoryOption("All");
+    setCurrentPage(1);
+  };
 
   return (
     <section className="transactions-container">
@@ -121,6 +128,9 @@ function Transactions() {
                 <option value="Transportation">Transportation</option>
               </select>
             </div>
+            <button className="clear-filters-btn" onClick={handleClearFilters}>
+              Clear Filters
+            </button>
           </div>
         </div>
 
@@ -132,72 +142,83 @@ function Transactions() {
         </div>
 
         <div className="transaction-list">
-          {paginatedData?.map((trans, idx) => (
-            <div key={idx} className="transaction-item">
-              <div className="name-block">
-                <img
-                  src={getAvatar(trans.avatar)}
-                  alt={trans.name}
-                  className="avatar-img"
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/avatars/default-avatar.png";
-                  }}
-                />
-                <h3>{trans.name}</h3>
+          {isLoading ? (
+            <div className="loading-message">Loading transactions...</div>
+          ) : paginatedData?.length > 0 ? (
+            paginatedData.map((trans, idx) => (
+              <div key={idx} className="transaction-item">
+                <div className="name-block">
+                  <img
+                    src={getAvatar(trans.avatar)}
+                    alt={trans.name}
+                    className="avatar-img"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "/images/avatars/default-avatar.png";
+                    }}
+                  />
+                  <h3>{trans.name}</h3>
+                </div>
+                <div className="info-block">
+                  <h3>{trans.category}</h3>
+                </div>
+                <div className="info-block">
+                  <h3>{formatDate(trans.date)}</h3>
+                </div>
+                <div className="amount-block">
+                  <h3
+                    className="amount"
+                    style={{
+                      color: trans.amount < 0 ? "#F50057" : "#277C78", // Red for negative, green for positive
+                    }}
+                  >
+                    {trans.amount < 0
+                      ? `-$${Math.abs(trans.amount).toFixed(2)}`
+                      : `+$${trans.amount.toFixed(2)}`}
+                  </h3>
+                </div>
               </div>
-              <div className="info-block">
-                <h3>{trans.category}</h3>
-              </div>
-              <div className="info-block">
-                <h3>{formatDate(trans.date)}</h3>
-              </div>
-              <div className="amount-block">
-                <h3
-                  className="amount"
-                  style={{
-                    color: trans.amount < 0 ? "#000000" : "#277C78",
-                  }}
-                >
-                  {trans.amount < 0
-                    ? `-$${Math.abs(trans.amount).toFixed(2)}`
-                    : `+$${trans.amount.toFixed(2)}`}
-                </h3>
-              </div>
+            ))
+          ) : (
+            <div className="no-transactions-message">
+              No transactions found.
             </div>
-          ))}
+          )}
         </div>
 
-        <div className="pagination">
-          <button
-            className={`prev-next ${currentPage === 1 ? "disabled" : ""}`}
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-          >
-            ← Prev
-          </button>
-          <div className="page-wrap">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i}
-                className={`page-button ${
-                  currentPage === i + 1 ? "active" : ""
-                }`}
-                onClick={() => handlePageClick(i + 1)}
-              >
-                {i + 1}
-              </button>
-            ))}
+        {paginatedData?.length > 0 && (
+          <div className="pagination">
+            <button
+              className={`prev-next ${currentPage === 1 ? "disabled" : ""}`}
+              onClick={handlePrev}
+              disabled={currentPage === 1}
+            >
+              ← Prev
+            </button>
+            <div className="page-wrap">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  className={`page-button ${
+                    currentPage === i + 1 ? "active" : ""
+                  }`}
+                  onClick={() => handlePageClick(i + 1)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              className={`prev-next ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            >
+              Next →
+            </button>
           </div>
-          <button
-            className={`prev-next ${
-              currentPage === totalPages ? "disabled" : ""
-            }`}
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-          >
-            Next →
-          </button>
-        </div>
+        )}
       </div>
     </section>
   );
