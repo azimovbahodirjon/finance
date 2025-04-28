@@ -12,7 +12,7 @@ const ApexChart = () => {
   const series = data.budgets.map((b) => b.maximum);
   const colors = data.budgets.map((b) => b.theme);
   const total = series.reduce((sum, val) => sum + val, 0);
-  const spent = 338; // Bu qiymatni dinamik qilish mumkin, hozircha rasmga moslab qo‘ydim
+  const spent = 338;
 
   const options = {
     chart: {

@@ -2,12 +2,18 @@ import { NavLink } from "react-router-dom";
 import ApexChart from "./ApexChart";
 import { useCollectionsData } from "../../hooks/useCollectionsData";
 
-function Budgets() {
+function Budgets({ showTotalPrice = true }) {
   const { data } = useCollectionsData();
 
   if (!data || !Array.isArray(data.balance)) {
-    return;
+    return null;
   }
+
+  // Calculate the total price from data.balance
+  const totalPrice = data.balance.reduce(
+    (sum, item) => sum + (item.amount || 0),
+    0
+  );
 
   return (
     <div className="card">
@@ -19,7 +25,7 @@ function Budgets() {
         </NavLink>
       </span>
       <div className="apexchart">
-        <ApexChart />
+        <ApexChart totalPrice={totalPrice} showTotalPrice={showTotalPrice} />
       </div>
     </div>
   );
