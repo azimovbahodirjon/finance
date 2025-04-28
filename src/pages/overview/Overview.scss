@@ -1,15 +1,73 @@
-.Overview-container {
-  padding: 40px 40px 32px 40px;
+// SCSS variables (consistent with your other components)
+$spacing-500: 40px;
+$spacing-400: 32px;
+$spacing-200: 16px;
+$spacing-150: 12px;
+$spacing-100: 8px;
+$text-preset-1: 36px;
+$text-preset-4: 16px;
+$white: #fff;
+$grey-500: #666;
+$grey-900: #333;
+body {
+  background-color: $white !important;
+  margin: 0;
+}
+
+.overview-container {
+  padding: 40px;
+  background-color: #f8f4f0;
+  min-height: 100vh;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
 .overview-title {
-  font-family: Public Sans;
-  font-weight: 700;
+  font-family: "Public Sans", sans-serif;
   font-size: 32px;
-  line-height: 120%;
-  letter-spacing: 0px;
+  font-weight: 700;
   color: #201f24;
-  margin-bottom: 42px;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50%;
+    height: 4px;
+    background-color: #277c78;
+    border-radius: 2px;
+  }
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: #201f24;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover:not(:disabled) {
+    background-color: darken(#201f24, 10%);
+  }
+  &:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+  }
 }
 
 .balanse-wrapper {
@@ -28,9 +86,17 @@
   background-color: #ffffff;
   .twos-section-title {
     color: #696868;
+    font-family: "Public Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
   }
   .twos-section-number {
     color: #201f24;
+    font-family: "Public Sans", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
   }
 }
 
@@ -38,7 +104,7 @@
   padding: 24px 147px 24px 24px;
   h3 {
     color: #ffffff;
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -46,7 +112,7 @@
     margin-bottom: 12px;
   }
   p {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 700;
     font-size: 32px;
     line-height: 120%;
@@ -56,17 +122,22 @@
 }
 
 .overview-cards-grid {
-  display: grid;
-  grid-template-columns: (1fr 1fr);
+  display: flex;
   gap: 24px;
+  margin-top: 32px;
 }
 
 .card {
   background-color: #fff;
   padding: 32px;
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
   h3 {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 700;
     font-size: 20px;
     line-height: 120%;
@@ -79,6 +150,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  flex: 1;
 }
 
 .nav-title {
@@ -86,7 +158,7 @@
   align-items: center;
   justify-content: space-between;
   .NavLink {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -96,6 +168,7 @@
     align-items: center;
     gap: 12px;
     cursor: pointer;
+    transition: color 0.3s ease;
     &:hover {
       color: #201f24;
       img {
@@ -124,7 +197,7 @@
   align-items: center;
   gap: 16px;
   p {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -133,7 +206,7 @@
     margin-bottom: 11px;
   }
   h4 {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 700;
     font-size: 32px;
     line-height: 120%;
@@ -150,7 +223,7 @@
 
 .chart {
   h3 {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
@@ -158,7 +231,7 @@
     color: #696868;
   }
   h4 {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 150%;
@@ -178,10 +251,10 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-grey-100, #f2f2f2);
+  border-bottom: 1px solid #f2f2f2;
   span {
     h3 {
-      font-family: Public Sans;
+      font-family: "Public Sans", sans-serif;
       font-weight: 700;
       font-size: 14px;
       line-height: 150%;
@@ -190,7 +263,7 @@
       margin-bottom: 8px;
     }
     h4 {
-      font-family: Public Sans;
+      font-family: "Public Sans", sans-serif;
       font-weight: 400;
       font-size: 12px;
       line-height: 150%;
@@ -212,7 +285,7 @@
     border-radius: 50%;
   }
   p {
-    font-family: Public Sans;
+    font-family: "Public Sans", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 150%;
@@ -225,55 +298,28 @@
   padding-top: 51px;
 }
 
-.overview-container {
-  padding: 40px;
-  background-color: #f5f5f5;
-  min-height: 100vh;
-}
+/* Responsive */
 
-.overview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.overview-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #201f24;
-  margin: 0;
-}
-
-.logout-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background-color: #201f24;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-family: "Public Sans", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  &:disabled {
-    background-color: #666;
-    cursor: not-allowed;
+@media (max-width: 1024px) {
+  .overview-cards-grid {
+    flex-direction: column;
+  }
+  .over-two-card {
+    width: 100%;
+  }
+  .overview-item {
+    padding: 24px;
+  }
+  .total-sav-wrap {
+    padding: 20px 16px;
   }
 }
 
-.overview-cards-grid {
-  display: flex;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-.over-two-card {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  flex: 1;
+@media (max-width: 768px) {
+  .balanse-wrapper {
+    flex-direction: column;
+  }
+  .chart-container {
+    grid-template-columns: 1fr;
+  }
 }
